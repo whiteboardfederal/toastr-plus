@@ -59,9 +59,9 @@
                 if ($container.length) {
                     return $container;
                 }
-                console.log(create);
+                //console.log(create);
                 if (create) {
-                    console.log("CREATING CONTAINER");
+                    //console.log("CREATING CONTAINER");
                     $container = createContainer(options);
                 }
                 return $container;
@@ -150,8 +150,8 @@
                     .attr('aria-live', 'polite')
                     .attr('role', 'alert');
 
-                console.log(options.positionClass);
-                console.log(options.target);
+                //console.log(options.positionClass);
+                //console.log(options.target);
 
                 $container.appendTo($(options.target));
                 return $container;

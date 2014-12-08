@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>toastr examples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="toastr.css" rel="stylesheet"/>
+    <style>
+        .row {
+            margin-left: 0;
+        }
+    </style>
+</head>
+
+<body class="container">
+<section class="row">
+    <h1>Testing Toastr</h1>
+
+    <div class="row">
+        
+        <div class="row">
+            <button type="button" class="btn btn-info" onClick="notifyInfo()">Info Toast</button>
+            <button type="button" class="btn btn-danger" onclick="notifyError()">Error Toasts</button>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="lodash/dist/lodash.min.js"></script>
+<script src="toastr.js"></script>
+
+<script type="text/javascript">
+ function notifyInfo() {
+   toastr.info("This is an info toast");
+ }
+ function notifyError() {
+   toastr.error("This is an error toast");
+ }
+</script>
+</body>
+</html>

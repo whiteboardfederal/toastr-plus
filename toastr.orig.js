@@ -52,16 +52,12 @@
             }
 
             function getContainer(options, create) {
-                if (!options) {
-                    options = getOptions();
-                }
+                if (!options) { options = getOptions(); }
                 $container = $('#' + options.containerId);
                 if ($container.length) {
                     return $container;
                 }
-                console.log(create);
                 if (create) {
-                    console.log("CREATING CONTAINER");
                     $container = createContainer(options);
                 }
                 return $container;
@@ -150,9 +146,6 @@
                     .attr('aria-live', 'polite')
                     .attr('role', 'alert');
 
-                console.log(options.positionClass);
-                console.log(options.target);
-
                 $container.appendTo($(options.target));
                 return $container;
             }
@@ -186,7 +179,7 @@
                     titleClass: 'toast-title',
                     messageClass: 'toast-message',
                     target: 'body',
-                    closeHtml: '<button>&times;</button>',
+                    closeHtml: '<button type="button">&times;</button>',
                     newestOnTop: true,
                     preventDuplicates: false,
                     progressBar: false
@@ -201,15 +194,6 @@
             function notify(map) {
                 var options = getOptions(),
                     iconClass = map.iconClass || options.iconClass;
-
-
-                // Adds modifications only to toast-error messages
-                if(_.isEqual('toast-error', map.iconClass)){
-                    options.timeOut = 0;
-                    options.extendedTimeOut = 0;
-                    options.tapToDismiss = false;
-                    options.closeButton = true;
-                }
 
                 if (options.preventDuplicates) {
                     if (map.message === previousToast) {
@@ -363,8 +347,6 @@
             }
 
             function getOptions() {
-                console.log(_.isUndefined(toastr.options));
-                console.log(_.isUndefined(getDefaults()));
                 return $.extend({}, getDefaults(), toastr.options);
             }
 

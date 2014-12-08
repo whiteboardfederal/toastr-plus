@@ -363,8 +363,8 @@
             }
 
             function getOptions() {
-                console.log(_.isUndefined(toastr.options));
-                console.log(_.isUndefined(getDefaults()));
+                //console.log(_.isUndefined(toastr.options));
+                //console.log(_.isUndefined(getDefaults()));
                 return $.extend({}, getDefaults(), toastr.options);
             }
 

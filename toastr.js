@@ -55,11 +55,11 @@
                 if (!options) {
                     options = getOptions();
                 }
+                console.log(options);
                 $container = $('#' + options.containerId);
                 if ($container.length) {
                     return $container;
                 }
-                //console.log(create);
                 if (create) {
                     //console.log("CREATING CONTAINER");
                     $container = createContainer(options);
@@ -199,8 +199,9 @@
             }
 
             function notify(map) {
-                var options = getOptions(),
-                    iconClass = map.iconClass || options.iconClass;
+                var options   = getOptions();
+                var iconClass = map.iconClass || options.iconClass;
+
 
 
                 // Adds modifications only to toast-error messages
@@ -209,8 +210,12 @@
                     options.extendedTimeOut = 0;
                     options.tapToDismiss = false;
                     options.closeButton = true;
+                    options.positionClass = "toast-top-left";
+                    
                 }
-
+                
+                options.containerId = options.positionClass + "-container";
+                
                 if (options.preventDuplicates) {
                     if (map.message === previousToast) {
                         return;

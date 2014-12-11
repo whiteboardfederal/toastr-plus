@@ -55,7 +55,6 @@
                 if (!options) {
                     options = getOptions();
                 }
-                console.log(options);
                 $container = $('#' + options.containerId);
                 if ($container.length) {
                     return $container;
@@ -210,7 +209,7 @@
                     options.extendedTimeOut = 0;
                     options.tapToDismiss = false;
                     options.closeButton = true;
-                    options.positionClass = "toast-top-left";
+                    options.positionClass = "toast-top-full-width";
                     
                 }
                 

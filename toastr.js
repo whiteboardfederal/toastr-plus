@@ -33,7 +33,13 @@
                 subscribe: subscribe,
                 success: success,
                 version: '2.1.0',
-                warning: warning
+                warning: warning,
+                config: {
+                    error : null,
+                    info: null,
+                    warning: null,
+                    success: null
+                }
             };
 
             var previousToast;
@@ -198,7 +204,7 @@
             }
 
             function notify(map) {
-                var options   = getOptions();
+                var options   = getOptions(map);
                 var iconClass = map.iconClass || options.iconClass;
 
                 if (typeof (map.optionsOverride) !== 'undefined') {
@@ -354,10 +360,15 @@
                 }
             }
 
-            function getOptions() {
+            function getOptions(map) {
                 //console.log(_.isUndefined(toastr.options));
                 //console.log(_.isUndefined(getDefaults()));
-                return $.extend({}, getDefaults(), toastr.options);
+                var options = $.extend({}, getDefaults(), toastr.options);
+                if( !_.isUndefined(map) && !_.isUndefined(toastr.config[map.type]) ){
+                    options = _.extend(options, toastr.config[map.type]);
+                }
+                    
+                return options;
             }
 
             function removeToast($toastElement) {

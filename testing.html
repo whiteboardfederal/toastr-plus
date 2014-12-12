@@ -33,20 +33,20 @@
 
 <script type="text/javascript">
  function notifyInfo() {
-   var opts={ 'timeOut' :  2000,
+   toastr.config.info = { 'timeOut' :  2000,
              'extendedTimeOut' : 2000,
              'tapToDismiss' : true,
              'closeButton' : false,
              'positionClass' : "toast-top-right"};
-   toastr.info("This is an info toast", "" , opts);
+   toastr.info("This is an info toast");
  }
  function notifyError() {
-    var opts={ 'timeOut' :  0,
+   toastr.config.error = { 'timeOut' :  0,
              'extendedTimeOut' : 0,
              'tapToDismiss' : false,
              'closeButton' : true,
              'positionClass' : "toast-top-left"};
-   toastr.error("This is an error toast","",opts);
+   toastr.error("This is an error toast");
  }
 </script>
 </body>

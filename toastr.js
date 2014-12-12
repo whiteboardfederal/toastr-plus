@@ -201,16 +201,9 @@
                 var options   = getOptions();
                 var iconClass = map.iconClass || options.iconClass;
 
-
-
-                // Adds modifications only to toast-error messages
-                if(_.isEqual('toast-error', map.iconClass)){
-                    options.timeOut = 0;
-                    options.extendedTimeOut = 0;
-                    options.tapToDismiss = false;
-                    options.closeButton = true;
-                    options.positionClass = "toast-top-full-width";
-                    
+                if (typeof (map.optionsOverride) !== 'undefined') {
+                    options = $.extend(options, map.optionsOverride);
+                    iconClass = map.optionsOverride.iconClass || iconClass;
                 }
                 
                 options.containerId = options.positionClass + "-container";
@@ -221,11 +214,6 @@
                     } else {
                         previousToast = map.message;
                     }
-                }
-
-                if (typeof (map.optionsOverride) !== 'undefined') {
-                    options = $.extend(options, map.optionsOverride);
-                    iconClass = map.optionsOverride.iconClass || iconClass;
                 }
 
                 toastId++;

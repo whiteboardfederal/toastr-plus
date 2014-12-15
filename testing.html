@@ -2,9 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>toastr examples</title>
+    <title>toastr testing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="toastr.css" rel="stylesheet"/>
     <style>
         .row {
@@ -37,7 +38,8 @@
              'extendedTimeOut' : 2000,
              'tapToDismiss' : true,
              'closeButton' : false,
-             'positionClass' : "toast-top-right"};
+             'positionClass' : "toast-top-right",
+             'icon' : "fa fa-2x fa-users"};
    toastr.info("This is an info toast");
  }
  function notifyError() {
@@ -45,9 +47,11 @@
              'extendedTimeOut' : 0,
              'tapToDismiss' : false,
              'closeButton' : true,
-             'positionClass' : "toast-top-left"};
-   toastr.error("This is an error toast");
+             'positionClass' : "toast-top-left",
+             'icon': "fa fa-2x fa-exclamation-circle"};
+   toastr.error("This is an error toast. This one will be longer than normal though to see how lengthy comments look.");
  }
 </script>
 </body>
 </html>
+

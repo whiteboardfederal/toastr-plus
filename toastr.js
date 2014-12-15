@@ -228,7 +228,8 @@
                 var intervalId = null,
                     $toastElement = $('<div/>'),
                     $titleElement = $('<div/>'),
-                    $messageElement = $('<div/>'),
+                    $imageElement = $('<span/>'),
+                    $messageElement = $('<span/>'),
                     $progressElement = $('<div/>'),
                     $closeElement = $(options.closeHtml),
                     progressBar = {
@@ -244,6 +245,7 @@
                         map: map
                     };
 
+
                 if (map.iconClass) {
                     $toastElement.addClass(options.toastClass).addClass(iconClass);
                 }
@@ -251,6 +253,11 @@
                 if (map.title) {
                     $titleElement.append(map.title).addClass(options.titleClass);
                     $toastElement.append($titleElement);
+                }
+
+                if( !_.isUndefined(toastr.config[map.type].icon) ){
+                    $imageElement.addClass("toastr-icon " + toastr.config[map.type].icon);                    
+                    $toastElement.append($imageElement);
                 }
 
                 if (map.message) {

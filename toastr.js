@@ -256,7 +256,7 @@
                 }
 
                 if( !_.isUndefined(toastr.config[map.type].icon) ){
-                    $imageElement.addClass("toastr-icon " + toastr.config[map.type].icon);                    
+                    $imageElement.addClass("toast-icon " + toastr.config[map.type].icon);                    
                     $toastElement.append($imageElement);
                 }
 

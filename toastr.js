@@ -47,15 +47,7 @@
             return toastr;
 
             //#region Accessible Methods
-            function error(message, title, optionsOverride) {
-                return notify({
-                    type: toastType.error,
-                    iconClass: getOptions().iconClasses.error,
-                    message: message,
-                    optionsOverride: optionsOverride,
-                    title: title
-                });
-            }
+
 
             function getContainer(options, create) {
                 if (!options) {
@@ -82,14 +74,20 @@
                 });
             }
 
-            function subscribe(callback) {
-                listener = callback;
-            }
-
             function success(message, title, optionsOverride) {
                 return notify({
                     type: toastType.success,
                     iconClass: getOptions().iconClasses.success,
+                    message: message,
+                    optionsOverride: optionsOverride,
+                    title: title
+                });
+            }
+
+            function error(message, title, optionsOverride) {
+                return notify({
+                    type: toastType.error,
+                    iconClass: getOptions().iconClasses.error,
                     message: message,
                     optionsOverride: optionsOverride,
                     title: title
@@ -104,6 +102,10 @@
                     optionsOverride: optionsOverride,
                     title: title
                 });
+            }
+
+            function subscribe(callback) {
+                listener = callback;
             }
 
             function clear($toastElement) {
@@ -177,7 +179,6 @@
                     hideDuration: 1000,
                     hideEasing: 'swing',
                     onHidden: undefined,
-
                     extendedTimeOut: 1000,
                     iconClasses: {
                         error: 'toast-error',
@@ -255,8 +256,8 @@
                     $toastElement.append($titleElement);
                 }
 
-                if( !_.isUndefined(toastr.config[map.type].icon) ){
-                    $imageElement.addClass("toast-icon " + toastr.config[map.type].icon);                    
+                if( !_.isUndefined(toastr.config[map.type].icon) || !_.isUndefined(options.icon)){
+                    $imageElement.addClass("toast-icon " + options.icon);
                     $toastElement.append($imageElement);
                 }
 

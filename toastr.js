@@ -1,6 +1,6 @@
 /*
  * Toastr
- * Copyright 2012-2014 
+ * Copyright 2012-2014
  * Authors: John Papa, Hans Fjällemark, and Tim Ferrell.
  * All Rights Reserved.
  * Use, reproduction, distribution, and modification of this code is subject to the terms and
@@ -10,7 +10,7 @@
  *
  * Project: https://github.com/CodeSeven/toastr
  */
-; (function (define) {
+(function (define) {
     define(['jquery'], function ($) {
         return (function () {
             var $container;
@@ -58,11 +58,12 @@
                     return $container;
                 }
                 if (create) {
-                    //console.log("CREATING CONTAINER");
                     $container = createContainer(options);
                 }
                 return $container;
             }
+
+//                    function info(message){info(message,null,null)}
 
             function info(message, title, optionsOverride) {
                 return notify({
@@ -157,9 +158,6 @@
                     .attr('aria-live', 'polite')
                     .attr('role', 'alert');
 
-                //console.log(options.positionClass);
-                //console.log(options.target);
-
                 $container.appendTo($(options.target));
                 return $container;
             }
@@ -204,6 +202,27 @@
                 listener(args);
             }
 
+            function getOptions(map) {
+                var options = $.extend({}, getDefaults(), toastr.options);
+                if (map && toastr.config[map.type]) {
+                    options = $.extend(options, toastr.config[map.type]);
+                }
+
+                return options;
+            }
+
+            function removeToast($toastElement) {
+                if (!$container) { $container = getContainer(); }
+                if ($toastElement.is(':visible')) {
+                    return;
+                }
+                $toastElement.remove();
+                $toastElement = null;
+                if ($container.children().length === 0) {
+                    $container.remove();
+                }
+            }
+
             function notify(map) {
                 var options   = getOptions(map);
                 var iconClass = map.iconClass || options.iconClass;
@@ -212,9 +231,9 @@
                     options = $.extend(options, map.optionsOverride);
                     iconClass = map.optionsOverride.iconClass || iconClass;
                 }
-                
+
                 options.containerId = options.positionClass + "-container";
-                
+
                 if (options.preventDuplicates) {
                     if (map.message === previousToast) {
                         return;
@@ -256,7 +275,7 @@
                     $toastElement.append($titleElement);
                 }
 
-                if( !_.isUndefined(toastr.config[map.type].icon) || !_.isUndefined(options.icon)){
+                if (options &&  options.icon) {
                     $imageElement.addClass("toast-icon " + options.icon);
                     $toastElement.append($imageElement);
                 }
@@ -368,28 +387,7 @@
                 }
             }
 
-            function getOptions(map) {
-                //console.log(_.isUndefined(toastr.options));
-                //console.log(_.isUndefined(getDefaults()));
-                var options = $.extend({}, getDefaults(), toastr.options);
-                if( !_.isUndefined(map) && !_.isUndefined(toastr.config[map.type]) ){
-                    options = _.extend(options, toastr.config[map.type]);
-                }
-                    
-                return options;
-            }
 
-            function removeToast($toastElement) {
-                if (!$container) { $container = getContainer(); }
-                if ($toastElement.is(':visible')) {
-                    return;
-                }
-                $toastElement.remove();
-                $toastElement = null;
-                if ($container.children().length === 0) {
-                    $container.remove();
-                }
-            }
             //#endregion
 
         })();
